@@ -36,7 +36,9 @@ class NewVisitorTest(unittest.TestCase):
         # When she hits enter, the page updates, and now the page lists
         # "1:  Buy peacock feathers" as an item on the to-do list
         inputbox.send_keys(Keys.ENTER)
-        # this is called an explicit wait, it basically waits for the webpage to finish loading before we make an assertions about the new page.
+
+        # This is called an explicit wait, it basically waits for the webpage
+        # to finish loading before we make an assertions about the new page.
         time.sleep(1)
 
         table = self.browser.find_element_by_id('id_list_table')
