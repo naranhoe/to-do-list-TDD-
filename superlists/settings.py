@@ -25,7 +25,7 @@ SECRET_KEY = '#djfz38&%+nuemsb^8@5+^or4oa90y()b+kbwm_4%14r+_$!(m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['superlists-staging.naranhoe.com']
 
 
 # Application definition
