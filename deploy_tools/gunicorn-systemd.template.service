@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn server for superlists-staging.naranhoe.com
+After=network.target
+
+[Service]
+Restart=on-failure
+User=naranhoe
+WorkingDirectory=/home/naranhoe/sites/superlists-staging.naranhoe.com/source
+ExecStart=/home/naranhoe/sites/superlists-staging.naranhoe.com/virtualenv/bin/gunicorn \
+        --bind unix:/tmp/superlists-staging.naranhoe.com.socket \
+        superlists.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
