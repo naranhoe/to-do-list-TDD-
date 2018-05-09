@@ -12,6 +12,32 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+# Email settings
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'j.naranjojr@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# Django doesn't send all exceptions to the terminal by default
+# You can do so with the LOGGING variable
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+        },
+    },
+    'root': {'level': 'INFO'},
+}
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +51,10 @@ SECRET_KEY = '#djfz38&%+nuemsb^8@5+^or4oa90y()b+kbwm_4%14r+_$!(m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['superlists-staging.naranhoe.com', '167.99.237.2']
+ALLOWED_HOSTS = [
+    'superlists-staging.naranhoe.com', '167.99.237.2',
+    'localhost',
+]
 
 
 # Application definition
@@ -39,6 +68,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'lists',
+    'accounts',
+]
+
+AUTH_USER_MODEL = 'accounts.ListUser'
+AUTHENTICATION_BACKENDS = [
+    'accounts.authentication.PasswordlessAuthenticationBackend',
 ]
 
 MIDDLEWARE = [
